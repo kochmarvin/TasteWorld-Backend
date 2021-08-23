@@ -15,12 +15,14 @@ export = async (req: Request, res: Response) => {
         });
     }
 
-    let body = JSON.parse(req.body.data);
+    let body = JSON.parse(JSON.stringify(req.body.data));
     body = JSON.parse(body);
 
     if(req.file) {
         body.picturePath = req.file.filename;
     }
+
+    console.log(body);
 
     let newRecipe : Recipe = new RecipeModel({
         _id: mongoose.Types.ObjectId(),
